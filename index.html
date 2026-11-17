@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOMAD PEAK — Authentic Tours & Expeditions in Kyrgyzstan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #059669;
+      --accent-hover: #047857;
+      --bg-light: #f8fafc;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 74px;
+    }
+    .logo { font-size: 22px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 26px; font-weight: 500; font-size: 15px; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-wa-header {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .btn-wa-header:hover { background: var(--accent-hover); }
+    .btn-admin-toggle {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-admin-toggle:hover { background: #e2e8f0; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 540px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(rgba(15, 23, 42, 0.52), rgba(15, 23, 42, 0.68)),
+                  url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80') center/cover;
+    }
+    .hero-content { max-width: 800px; padding: 0 20px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(4px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .hero h1 { font-size: 46px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+    .hero p { font-size: 18px; opacity: 0.92; margin-bottom: 32px; }
+    .hero-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 16px 34px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+    .hero-btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+    /* Sections */
+    section { padding: 76px 0; }
+    .section-header { text-align: center; max-width: 680px; margin: 0 auto 48px; }
+    .section-header h2 { font-size: 32px; font-weight: 800; color: var(--primary); margin-bottom: 12px; }
+    .section-header p { color: var(--text-muted); font-size: 16px; }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .filter-btn {
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Tours Grid */
+    .tours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+    }
+    .tour-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: 0.25s;
+    }
+    .tour-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+    .tour-img-wrap { position: relative; height: 225px; overflow: hidden; }
+    .tour-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+    .tour-card:hover .tour-img-wrap img { transform: scale(1.05); }
+    .tour-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .tour-body { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
+    .tour-meta {
+      display: flex;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .tour-title { font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+    .tour-short { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
+    .tour-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .tour-price { font-size: 22px; font-weight: 800; color: var(--primary); }
+    .tour-price span { font-size: 12px; font-weight: 400; color: var(--text-muted); display: block; }
+    .btn-details {
+      background: var(--bg-light);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-details:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* News & Blog Section */
+    .news-section { background: var(--bg-light); }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .news-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .news-card img { width: 100%; height: 200px; object-fit: cover; }
+    .news-body { padding: 22px; flex-grow: 1; }
+    .news-date { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+    .news-body h3 { font-size: 18px; color: var(--primary); margin-bottom: 10px; }
+    .news-body p { font-size: 14px; color: var(--text-muted); }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .feature-box {
+      background: var(--bg-light);
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .feature-icon { font-size: 28px; margin-bottom: 14px; }
+    .feature-box h3 { font-size: 18px; margin-bottom: 8px; color: var(--primary); }
+    .feature-box p { font-size: 14px; color: var(--text-muted); }
+
+    /* FAQ */
+    .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fff; }
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 18px 22px;
+      background: #fff;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      padding: 0 22px 18px;
+      font-size: 15px;
+      color: var(--text-muted);
+      display: none;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* Tour Detail Page */
+    #tour-detail-view { display: none; padding: 40px 0 80px; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 28px;
+    }
+    .back-btn:hover { background: #e2e8f0; }
+    .detail-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+    }
+    .detail-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .detail-gallery img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .video-container {
+      margin: 28px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 16 / 9;
+    }
+    .video-container iframe { width: 100%; height: 100%; border: none; }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .detail-content h1 { font-size: 34px; font-weight: 800; margin-bottom: 16px; color: var(--primary); }
+    .detail-tags { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .detail-tag {
+      background: var(--bg-light);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .day-plan { margin-top: 28px; }
+    .day-card {
+      border-left: 3px solid var(--accent);
+      padding-left: 18px;
+      margin-bottom: 20px;
+    }
+    .day-card h4 { font-size: 17px; color: var(--primary); margin-bottom: 6px; }
+    .day-card p { font-size: 15px; color: var(--text-muted); }
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 32px;
+      background: var(--bg-light);
+      padding: 24px;
+      border-radius: var(--radius);
+    }
+    .included-grid ul { list-style: none; margin-top: 10px; font-size: 14px; }
+    .included-grid li { margin-bottom: 6px; }
+
+    /* Booking Sidebar */
+    .booking-box {
+      position: sticky;
+      top: 96px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      background: #fff;
+    }
+    .booking-price { font-size: 32px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .booking-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+    .booking-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-family: inherit;
+    }
+    .btn-book-now {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-book-now:hover { background: var(--accent-hover); }
+
+    /* ==========================================
+       ADMIN PANEL (CMS) STYLES
+       ========================================== */
+    #admin-panel {
+      display: none;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 40px 0;
+      border-bottom: 4px solid var(--accent);
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .admin-card {
+      background: #1e293b;
+      padding: 24px;
+      border-radius: 14px;
+      border: 1px solid #334155;
+    }
+    .admin-card h3 { margin-bottom: 16px; color: #34d399; font-size: 18px; }
+    .admin-input, .admin-textarea, .admin-select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    .admin-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .admin-btn:hover { background: var(--accent-hover); }
+    .admin-btn-export {
+      background: #eab308;
+      color: #0f172a;
+      font-weight: 800;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    .admin-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0f172a;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .admin-price-edit {
+      width: 90px;
+      padding: 4px 8px;
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      margin-right: 8px;
+    }
+    .btn-del {
+      background: #ef4444;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    footer {
+      background: var(--primary);
+      color: #94a3b8;
+      padding: 48px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 30px; }
+      .nav-links { display: none; }
+      .detail-layout, .admin-grid, .included-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ADMIN PANEL (Открывается по кнопке ⚙️ Admin) -->
+  <div id="admin-panel">
+    <div class="container">
+      <div class="admin-header">
+        <div>
+          <h2>⚙️ Панель управления сайтом (CMS)</h2>
+          <p style="color: #94a3b8; font-size: 14px;">Меняйте цены, добавляйте туры, видео и новости. После изменений нажмите «Скачать обновленный файл» и загрузите его на GitHub.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="admin-btn-export" onclick="exportUpdatedHTML()">💾 Скачать обновленный index.html</button>
+          <button class="admin-btn" style="background:#475569;" onclick="toggleAdmin()">Закрыть</button>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <!-- Управление ценами и списком туров -->
+        <div class="admin-card">
+          <h3>1. Быстрое изменение цен и удаление туров</h3>
+          <div id="admin-tours-list"></div>
+          <hr style="border-color: #334155; margin: 20px 0;">
+          <h3>2. Добавить новый тур</h3>
+          <input type="text" id="new-tour-title" class="admin-input" placeholder="Название тура (на англ., например: Son-Kul Horse Expedition)">
+          <input type="text" id="new-tour-duration" class="admin-input" placeholder="Длительность (например: 5 Days / 4 Nights)">
+          <input type="text" id="new-tour-location" class="admin-input" placeholder="Локации (например: Bishkek - Son-Kul - Karakol)">
+          <input type="text" id="new-tour-price" class="admin-input" placeholder="Цена в долларах (например: $580)">
+          <select id="new-tour-cat" class="admin-select">
+            <option value="3-4 Days">3-4 Days</option>
+            <option value="5-7 Days">5-7 Days</option>
+            <option value="Private 4x4">Private 4x4</option>
+          </select>
+          <input type="text" id="new-tour-img" class="admin-input" placeholder="Ссылка на главное фото (URL)">
+          <input type="text" id="new-tour-video" class="admin-input" placeholder="Ссылка на YouTube видео (необязательно)">
+          <textarea id="new-tour-desc" class="admin-textarea" rows="3" placeholder="Краткое описание тура"></textarea>
+          <textarea id="new-tour-days" class="admin-textarea" rows="4" placeholder="Программа по дням (каждый день с новой строки, формат: Day 1: Описание)"></textarea>
+          <button class="admin-btn" onclick="addNewTour()">+ Добавить тур на сайт</button>
+        </div>
+
+        <!-- Управление новостями и фото/видео -->
+        <div class="admin-card">
+          <h3>3. Опубликовать новость или фотоотчет</h3>
+          <input type="text" id="news-title" class="admin-input" placeholder="Заголовок новости (например: Spring season in Ala-Archa is open!)">
+          <input type="text" id="news-date" class="admin-input" placeholder="Дата (например: November 2026)">
+          <input type="text" id="news-img" class="admin-input" placeholder="Ссылка на фото для новости (URL)">
+          <textarea id="news-text" class="admin-textarea" rows="4" placeholder="Текст новости или заметки для туристов..."></textarea>
+          <button class="admin-btn" onclick="addNews()">+ Опубликовать новость</button>
+
+          <hr style="border-color: #334155; margin: 20px 0;">
+          <h3>4. Текущие новости</h3>
+          <div id="admin-news-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo" onclick="showHome(); return false;">NOMAD<span>PEAK</span></a>
+      <nav class="nav-links">
+        <a href="#tours" onclick="showHome()">Multi-Day Tours</a>
+        <a href="#news" onclick="showHome()">News & Updates</a>
+        <a href="#features" onclick="showHome()">Why Kyrgyzstan</a>
+        <a href="#faq" onclick="showHome()">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-admin-toggle" onclick="openAdminAuth()">⚙️ Admin</button>
+        <a href="https://wa.me/996700000000" target="_blank" class="btn-wa-header">WhatsApp Us</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN HOME VIEW -->
+  <main id="home-view">
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-badge">🇰🇬 Guided Expeditions Across Tien Shan Mountains</span>
+        <h1>Discover Untamed Kyrgyzstan: 3 to 7-Day Guided Tours</h1>
+        <p>From the alpine peaks of Ala-Archa and Chunkurchak to the red canyons of Skazka, Barskoon waterfalls, Jeti-Oguz, and Karakol.</p>
+        <a href="#tours" class="hero-btn">Explore Guided Tours</a>
+      </div>
+    </section>
+
+    <!-- TOURS CATALOG -->
+    <section id="tours">
+      <div class="container">
+        <div class="section-header">
+          <h2>Multi-Day Guided Tours</h2>
+          <p>All tours include an experienced English-speaking guide, private transport, and authentic accommodation</p>
+        </div>
+
+        <div class="filters">
+          <button class="filter-btn active" onclick="filterTours('all', this)">All Tours</button>
+          <button class="filter-btn" onclick="filterTours('3-4 Days', this)">3–4 Days</button>
+          <button class="filter-btn" onclick="filterTours('5-7 Days', this)">5–7 Days</button>
+          <button class="filter-btn" onclick="filterTours('Private 4x4', this)">Private 4x4</button>
+        </div>
+
+        <div class="tours-grid" id="tours-container"></div>
+      </div>
+    </section>
+
+    <!-- NEWS & UPDATES SECTION -->
+    <section id="news" class="news-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Travel News & Field Updates</h2>
+          <p>Latest road conditions, seasonal highlights, and stories from our recent expeditions</p>
+        </div>
+        <div class="news-grid" id="news-container"></div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Travel With Us</h2>
+          <p>Local expertise combined with international safety and comfort standards</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon">🗣️</div>
+            <h3>Dedicated English-Speaking Guide</h3>
+            <p>Your guide accompanies you throughout the entire 3–7 day journey, sharing nomadic culture and handling all logistics.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon">🚙</div>
+            <h3>Comfortable 4x4 & Minivans</h3>
+            <p>Well-maintained mountain vehicles driven by experienced local drivers familiar with high-altitude passes.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon">🏕️</div>
+            <h3>Authentic Yurts & Guesthouses</h3>
+            <p>Stay in hand-picked family guesthouses and traditional nomadic yurt camps with homemade Kyrgyz cuisine.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" style="background: var(--bg-light);">
+      <div class="container">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+          <p>Everything international travelers need to know before visiting Kyrgyzstan</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">Do I need a visa to visit Kyrgyzstan? <span>+</span></button>
+            <div class="faq-answer">Citizens of over 60 countries (including the US, UK, EU, Canada, Australia, and Japan) can enter Kyrgyzstan visa-free for up to 60 days.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">How are multi-day tour prices calculated? <span>+</span></button>
+            <div class="faq-answer">Prices are listed per person based on a group of 2–4 travelers and include private transport, fuel, English-speaking guide, accommodation, breakfasts, and national park fees. Solo traveler rates are available upon request.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">Can we customize a 4-day or 7-day itinerary? <span>+</span></button>
+            <div class="faq-answer">Yes! Every itinerary can be tailored to your arrival/departure dates in Bishkek, preferred pace, and level of hiking difficulty.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- TOUR DETAIL PAGE -->
+  <div id="tour-detail-view">
+    <div class="container">
+      <button class="back-btn" onclick="showHome()">← Back to All Tours</button>
+      <img id="detail-img" class="detail-hero-img" src="" alt="Tour cover">
+      <div id="detail-gallery" class="detail-gallery"></div>
+
+      <div class="detail-layout">
+        <div class="detail-content">
+          <div class="detail-tags">
+            <span class="detail-tag" id="detail-category"></span>
+            <span class="detail-tag" id="detail-duration"></span>
+            <span class="detail-tag" id="detail-location"></span>
+          </div>
+          <h1 id="detail-title"></h1>
+          <p id="detail-full-desc" style="font-size: 16px; color: #334155;"></p>
+
+          <!-- Video block (shown if video URL is provided) -->
+          <div id="detail-video-wrap" class="video-container" style="display:none;">
+            <iframe id="detail-video-frame" src="" allowfullscreen></iframe>
+          </div>
+
+          <div class="day-plan">
+            <h3 style="font-size: 22px; margin-bottom: 16px;">Day-by-Day Itinerary</h3>
+            <div id="detail-days"></div>
+          </div>
+
+          <div class="included-grid">
+            <div>
+              <h4 style="color: #059669;">✅ Included in Price:</h4>
+              <ul id="detail-included"></ul>
+            </div>
+            <div>
+              <h4 style="color: #e11d48;">❌ Not Included:</h4>
+              <ul id="detail-excluded"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Box -->
+        <div class="booking-box">
+          <div class="booking-price" id="detail-price"></div>
+          <div class="booking-sub">Per person • Includes English-speaking guide</div>
+          <input type="text" id="book-name" class="booking-input" placeholder="Your Full Name">
+          <input type="date" id="book-date" class="booking-input">
+          <input type="number" id="book-people" class="booking-input" placeholder="Number of Travelers (e.g. 2)" min="1">
+          <button class="btn-book-now" onclick="bookViaWhatsapp()">Book via WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 NOMAD PEAK Kyrgyzstan — Guided Mountain & Cultural Tours. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script id="site-data-script">
+    // ==========================================
+    // DATA STORAGE (Edited automatically via Admin Panel)
+    // ==========================================
+    let toursData = [
+      {
+        id: 1,
+        title: "Legends of Tien Shan: South Shore Issyk-Kul & Karakol",
+        category: "3-4 Days",
+        duration: "4 Days / 3 Nights",
+        location: "Bishkek – Skazka – Barskoon – Jeti-Oguz – Karakol – Burana",
+        price: "$460",
+        badge: "Most Popular",
+        image: "https://images.unsplash.com/photo-1542332213-31f87348057f?auto=format&fit=crop&w=1000&q=80",
+        gallery: [
+          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+        ],
+        videoUrl: "",
+        shortDesc: "Explore red sandstone formations in Skazka Canyon, waterfalls of Barskoon, Seven Bulls rocks in Jeti-Oguz, and historical Karakol.",
+        fullDesc: "Our signature 4-day guided loop around Lake Issyk-Kul. Accompanied by a dedicated English-speaking guide, you will sleep in a traditional nomadic yurt camp, hike to alpine waterfalls, and explore Silk Road heritage.",
+        days: [
+          { title: "Day 1: Bishkek – Skazka (Fairy Tale) Canyon – Yurt Camp", text: "Depart Bishkek at 08:00 through Boom Gorge. Walk among the surreal red rock formations of Skazka Canyon. Overnight in an authentic lakeside yurt camp with homemade dinner." },
+          { title: "Day 2: Barskoon Waterfalls – Jeti-Oguz Gorge – Karakol", text: "Drive up Barskoon Gorge to see the Tears of the Snow Leopard waterfall. Continue to Jeti-Oguz to photograph the famous Seven Bulls red cliffs. Evening arrival in Karakol." },
+          { title: "Day 3: Karakol Cultural Tour – Grigoriev & Semenov Gorges", text: "Visit the wooden Dungan Mosque and Holy Trinity Cathedral. Drive along the northern shore through lush alpine valleys and spruce forests." },
+          { title: "Day 4: North Shore – Burana Tower – Bishkek", text: "Morning relaxation by the lake. On the way back to Bishkek, climb the 11th-century Burana Minaret and inspect ancient stone warriors (Balbals). Arrive in Bishkek by 18:00." }
+        ],
+        included: ["English-speaking guide for all 4 days", "Private comfortable transport & fuel", "3 nights accommodation (Yurt camp & Hotels)", "Daily breakfasts & 1 yurt dinner", "All national park & canyon entry fees"],
+        excluded: ["Lunches and dinners in cafes", "International flights", "Personal travel insurance"]
+      },
+      {
+        id: 2,
+        title: "Chui Valley & Alpine Gorges: Ala-Archa, Chunkurchak & Chon-Kemin",
+        category: "3-4 Days",
+        duration: "3 Days / 2 Nights",
+        location: "Bishkek – Ala-Archa – Chunkurchak – Burana – Kegeti – Chon-Kemin",
+        price: "$340",
+        badge: "Short Escape",
+        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
+        gallery: [],
+        videoUrl: "",
+        shortDesc: "Ideal 3-day mountain introduction near Bishkek: glacier views in Ala-Archa, Chunkurchak pastures, Kegeti waterfall, and horseback riding in Chon-Kemin.",
+        fullDesc: "Designed for travelers with limited time who want to experience Kyrgyzstan's dramatic mountain scenery, Silk Road ruins, and nomadic horse culture without long driving hours.",
+        days: [
+          { title: "Day 1: Ala-Archa National Park & Chunkurchak Gorge", text: "Morning hike along the Ala-Archa alpine river surrounded by 4,000m snow-capped peaks. Afternoon panoramic drive to Chunkurchak high-mountain plateau." },
+          { title: "Day 2: Burana Tower – Kegeti Gorge – Chon-Kemin Valley", text: "Explore the ancient Silk Road ruins at Burana, hike to the 20-meter waterfall in Kegeti Gorge, and arrive at a cozy guesthouse in Chon-Kemin National Park." },
+          { title: "Day 3: Horseback Riding in Chon-Kemin – Return to Bishkek", text: "Morning guided horseback ride through pine forests and mountain ridges of Chon-Kemin. Afternoon transfer back to Bishkek." }
+        ],
+        included: ["Dedicated English-speaking guide", "Private car/minivan with driver", "2 nights guesthouse accommodation", "Breakfasts and dinners in Chon-Kemin", "Guided horseback riding session"],
+        excluded: ["Lunches", "Personal expenses"]
+      },
+      {
+        id: 3,
+        title: "Grand Nomadic Expedition: Son-Kul Lake & Issyk-Kul Loop",
+        category: "5-7 Days",
+        duration: "6 Days / 5 Nights",
+        location: "Bishkek – Chon-Kemin – Son-Kul (3,016m) – Skazka – Barskoon – Karakol",
+        price: "$720",
+        badge: "Best Value 6 Days",
+        image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1000&q=80",
+        gallery: [],
+        videoUrl: "",
+        shortDesc: "The complete Kyrgyzstan experience: stay with semi-nomadic shepherds at high-altitude Son-Kul Lake (3,016m) and explore the entire Issyk-Kul ring.",
+        fullDesc: "Immerse yourself in true nomadic life at Son-Kul alpine lake where wild horses roam freely, followed by the dramatic canyons, waterfalls, and hot springs of Issyk-Kul.",
+        days: [
+          { title: "Day 1: Bishkek – Burana Tower – Chon-Kemin", text: "Historical stop at Burana Tower and afternoon valley walk in Chon-Kemin." },
+          { title: "Day 2: Chon-Kemin – High-Altitude Son-Kul Lake (3,016m)", text: "Scenic mountain pass ascent to Son-Kul Lake. Meet local shepherds, taste fresh kumis, and sleep in a heated traditional yurt." },
+          { title: "Day 3: Son-Kul – Kochkor – Skazka Canyon", text: "Morning horseback ride by the lake. Descend via Kochkor felt-making workshop to the southern shore of Issyk-Kul." },
+          { title: "Day 4: Barskoon Waterfalls – Jeti-Oguz – Karakol", text: "Full day exploring waterfalls and red rock formations before arriving in Karakol." },
+          { title: "Day 5: Karakol – Altyn-Arashan Hot Springs (4x4 Truck)", text: "Exciting off-road ride in a Soviet 4x4 truck to Altyn-Arashan alpine valley for natural hot springs." },
+          { title: "Day 6: North Shore Issyk-Kul – Bishkek", text: "Scenic drive along the northern coast back to Bishkek." }
+        ],
+        included: ["English-speaking guide throughout", "4x4 / Minivan transport", "5 nights accommodation (Yurts & Guesthouses)", "All breakfasts & yurt meals", "4x4 excursion to Altyn-Arashan"],
+        excluded: ["Restaurant lunches/dinners in cities", "Alcoholic beverages"]
+      }
+    ];
+
+    let newsData = [
+      {
+        id: 1,
+        title: "Mountain Passes Open for 2026 Season",
+        date: "November 2026",
+        image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
+        text: "All routes through Boom Gorge, Barskoon, and Chon-Kemin are in great condition. Booking is now open for early spring and summer guided tours."
+      },
+      {
+        id: 2,
+        title: "New Yurt Camp Partners on South Shore Issyk-Kul",
+        date: "October 2026",
+        image: "https://images.unsplash.com/photo-1542332213-31f87348057f?auto=format&fit=crop&w=800&q=80",
+        text: "We upgraded our overnight stays near Skazka Canyon with newly built traditional yurts featuring private hot showers and panoramic lake views."
+      }
+    ];
+  </script>
+
+  <script>
+    const WHATSAPP_PHONE = "996700000000"; // Замените на ваш номер
+    const ADMIN_PASSWORD = "1234"; // Пароль от админки
+    let currentSelectedTour = null;
+
+    // ==========================================
+    // RENDER FUNCTIONS
+    // ==========================================
+    function renderTours(filter = 'all') {
+      const container = document.getElementById('tours-container');
+      container.innerHTML = '';
+
+      const filtered = filter === 'all'
+        ? toursData
+        : toursData.filter(t => t.category === filter);
+
+      filtered.forEach(tour => {
+        const card = document.createElement('div');
+        card.className = 'tour-card';
+        card.innerHTML = `
+          <div class="tour-img-wrap">
+            <span class="tour-badge">${tour.badge}</span>
+            <img src="${tour.image}" alt="${tour.title}">
+          </div>
+          <div class="tour-body">
+            <div class="tour-meta">
+              <span>🧭 ${tour.category}</span>
+              <span>⏱ ${tour.duration}</span>
+            </div>
+            <h3 class="tour-title">${tour.title}</h3>
+            <p class="tour-short">${tour.shortDesc}</p>
+            <div class="tour-footer">
+              <div class="tour-price">
+                <span>Guided Tour</span>
+                ${tour.price}
+              </div>
+              <button class="btn-details" onclick="openTourDetails(${tour.id})">View Details →</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderNews() {
+      const container = document.getElementById('news-container');
+      container.innerHTML = newsData.map(n => `
+        <div class="news-card">
+          <img src="${n.image}" alt="${n.title}">
+          <div class="news-body">
+            <div class="news-date">${n.date}</div>
+            <h3>${n.title}</h3>
+            <p>${n.text}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterTours(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTours(category);
+    }
+
+    function openTourDetails(id) {
+      const tour = toursData.find(t => t.id === id);
+      if (!tour) return;
+      currentSelectedTour = tour;
+
+      document.getElementById('detail-img').src = tour.image;
+      document.getElementById('detail-category').textContent = tour.category;
+      document.getElementById('detail-duration').textContent = '⏱ ' + tour.duration;
+      document.getElementById('detail-location').textContent = '📍 ' + tour.location;
+      document.getElementById('detail-title').textContent = tour.title;
+      document.getElementById('detail-full-desc').textContent = tour.fullDesc;
+      document.getElementById('detail-price').textContent = tour.price;
+
+      // Gallery
+      const gal = document.getElementById('detail-gallery');
+      if (tour.gallery && tour.gallery.length > 0) {
+        gal.style.display = 'grid';
+        gal.innerHTML = tour.gallery.map(imgUrl => `<img src="${imgUrl}" alt="Gallery">`).join('');
+      } else {
+        gal.style.display = 'none';
+      }
+
+      // YouTube Video
+      const videoWrap = document.getElementById('detail-video-wrap');
+      const videoFrame = document.getElementById('detail-video-frame');
+      if (tour.videoUrl) {
+        let embedUrl = tour.videoUrl.replace("watch?v=", "embed/").replace("youtu.be/", "youtube.com/embed/");
+        videoFrame.src = embedUrl;
+        videoWrap.style.display = 'block';
+      } else {
+        videoWrap.style.display = 'none';
+        videoFrame.src = '';
+      }
+
+      // Days
+      document.getElementById('detail-days').innerHTML = tour.days.map(d => `
+        <div class="day-card">
+          <h4>${d.title}</h4>
+          <p>${d.text}</p>
+        </div>
+      `).join('');
+
+      document.getElementById('detail-included').innerHTML = tour.included.map(i => `<li>• ${i}</li>`).join('');
+      document.getElementById('detail-excluded').innerHTML = tour.excluded.map(e => `<li>• ${e}</li>`).join('');
+
+      document.getElementById('home-view').style.display = 'none';
+      document.getElementById('tour-detail-view').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showHome() {
+      document.getElementById('tour-detail-view').style.display = 'none';
+      document.getElementById('home-view').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      item.classList.toggle('open');
+      btn.querySelector('span').textContent = item.classList.contains('open') ? '−' : '+';
+    }
+
+    function bookViaWhatsapp() {
+      if (!currentSelectedTour) return;
+      const name = document.getElementById('book-name').value || 'Not specified';
+      const date = document.getElementById('book-date').value || 'Flexible';
+      const people = document.getElementById('book-people').value || '2';
+
+      const text = `Hello! I would like to book the tour:\n*${currentSelectedTour.title}* (${currentSelectedTour.duration})\nName: ${name}\nPreferred Date: ${date}\nTravelers: ${people}`;
+      window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // ==========================================
+    // ADMIN PANEL LOGIC
+    // ==========================================
+    function openAdminAuth() {
+      const panel = document.getElementById('admin-panel');
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+      }
+      const pass = prompt("Введите пароль администратора (по умолчанию 1234):");
+      if (pass === ADMIN_PASSWORD) {
+        panel.style.display = 'block';
+        renderAdminLists();
+      } else if (pass !== null) {
+        alert("Неверный пароль!");
+      }
+    }
+
+    function toggleAdmin() {
+      document.getElementById('admin-panel').style.display = 'none';
+    }
+
+    function renderAdminLists() {
+      // Tours list in Admin
+      const toursList = document.getElementById('admin-tours-list');
+      toursList.innerHTML = toursData.map(t => `
+        <div class="admin-list-item">
+          <span style="max-width: 55%;">${t.title}</span>
+          <div>
+            <input type="text" class="admin-price-edit" value="${t.price}" onchange="updatePrice(${t.id}, this.value)">
+            <button class="btn-del" onclick="deleteTour(${t.id})">Удалить</button>
+          </div>
+        </div>
+      `).join('');
+
+      // News list in Admin
+      const newsList = document.getElementById('admin-news-list');
+      newsList.innerHTML = newsData.map(n => `
+        <div class="admin-list-item">
+          <span>${n.title}</span>
+          <button class="btn-del" onclick="deleteNews(${n.id})">Удалить</button>
+        </div>
+      `).join('');
+    }
+
+    function updatePrice(id, newPrice) {
+      const tour = toursData.find(t => t.id === id);
+      if (tour) {
+        tour.price = newPrice;
+        renderTours();
+      }
+    }
+
+    function deleteTour(id) {
+      toursData = toursData.filter(t => t.id !== id);
+      renderTours();
+      renderAdminLists();
+    }
+
+    function addNewTour() {
+      const title = document.getElementById('new-tour-title').value;
+      const duration = document.getElementById('new-tour-duration').value || "4 Days / 3 Nights";
+      const location = document.getElementById('new-tour-location').value || "Kyrgyzstan";
+      const price = document.getElementById('new-tour-price').value || "$450";
+      const category = document.getElementById('new-tour-cat').value;
+      const image = document.getElementById('new-tour-img').value || "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80";
+      const videoUrl = document.getElementById('new-tour-video').value;
+      const shortDesc = document.getElementById('new-tour-desc').value || "Guided mountain expedition across Kyrgyzstan.";
+      const daysRaw = document.getElementById('new-tour-days').value;
+
+      if (!title) return alert("Введите название тура!");
+
+      const daysArray = daysRaw
+        ? daysRaw.split('\n').map(line => {
+            const parts = line.split(':');
+            return { title: parts[0] || "Day", text: parts.slice(1).join(':') || line };
+          })
+        : [{ title: "Full Itinerary", text: shortDesc }];
+
+      toursData.push({
+        id: Date.now(),
+        title,
+        category,
+        duration,
+        location,
+        price,
+        badge: "New Tour",
+        image,
+        gallery: [],
+        videoUrl,
+        shortDesc,
+        fullDesc: shortDesc,
+        days: daysArray,
+        included: ["English-speaking guide", "Private transport", "Accommodation & breakfasts"],
+        excluded: ["Flights", "Personal expenses"]
+      });
+
+      renderTours();
+      renderAdminLists();
+      alert("Тур добавлен! Не забудьте нажать «Скачать обновленный index.html», чтобы сохранить изменения навсегда.");
+    }
+
+    function addNews() {
+      const title = document.getElementById('news-title').value;
+      const date = document.getElementById('news-date').value || "November 2026";
+      const image = document.getElementById('news-img').value || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80";
+      const text = document.getElementById('news-text').value;
+
+      if (!title || !text) return alert("Заполните заголовок и текст новости!");
+
+      newsData.unshift({ id: Date.now(), title, date, image, text });
+      renderNews();
+      renderAdminLists();
+      alert("Новость опубликована!");
+    }
+
+    function deleteNews(id) {
+      newsData = newsData.filter(n => n.id !== id);
+      renderNews();
+      renderAdminLists();
+    }
+
+    // Экспорт нового HTML-файла со всеми внесенными изменениями
+    function exportUpdatedHTML() {
+      const dataScript = document.getElementById('site-data-script');
+      dataScript.textContent = `\n    let toursData = ${JSON.stringify(toursData, null, 2)};\n    let newsData = ${JSON.stringify(newsData, null, 2)};\n  `;
+
+      // Временно скрываем админку перед сохранением файла
+      const adminPanel = document.getElementById('admin-panel');
+      adminPanel.style.display = 'none';
+
+      const fullHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+      const blob = new Blob([fullHTML], { type: "text/html;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "index.html";
+      link.click();
+
+      adminPanel.style.display = 'block';
+    }
+
+    // Init
+    renderTours();
+    renderNews();
+  </script>
+</body>
+</html>
